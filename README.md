@@ -125,7 +125,7 @@ example :
 ``` bash
 kubeadm join 192.168.1.1:6443 --token vzau5v.vjiqyxq26lzsf28e --discovery-token-ca-cert-hash sha256:e6d046ba34ee03e7d55e1f5ac6d2de09fd6d7e6959d16782ef0778794b94c61e
 ```
-Wait for some minutes and back to the 'k8s-master' master cluster server check the nodes and pods using the following command.
+Wait for some minutes and back to the 'master' master cluster server check the nodes and pods using the following command.
 
 Check your node from master
 
