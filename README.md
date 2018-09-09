@@ -134,6 +134,19 @@ kubectl get nodes
 kubectl get pods --all-namespaces
 ```
 
+
+## Installing Dashboard
+See Next Time
+
+## How To Use BASH Excecution
+You can execute the run.sh file
+
+``` bash
+sudo ./run.sh
+```
+Select the List of Functions that exist then execute each step from 1-11
+
+
 ## Testing Create First Pod | Master
 In this step, we will do a test by deploying the Nginx pod to the kubernetes cluster. A pod is a group of one or more containers with shared storage and network that runs under Kubernetes. A Pod contains one or more containers, such as Docker container.
 
@@ -165,4 +178,3 @@ curl node:30691
 ```
 then from your browser open url : node_ip:30691
 
-## Installing Dashboard
