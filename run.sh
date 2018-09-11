@@ -47,6 +47,11 @@ function disable_selinux(){
     sed -i --follow-symlinks 's/SELINUX=enforcing/SELINUX=disabled/g' /etc/sysconfig/selinux
 }
 
+function enable_net_filter(){
+    modprobe br_netfilter
+    echo '1' > /proc/sys/net/bridge/bridge-nf-call-iptables
+}
+
 function disable_swap(){
     echo "3. Disable Swap Memory"
     swapoff -a
@@ -130,16 +135,17 @@ check_root
 while true; do 
     echo "1. Configure Host | Master And Node"
     echo "2. Disable Selinux | Master And Node"
-    echo "3. Disable Swap | Master And Node"
-    echo "4. Installing Docker CE | Master And Node"
-    echo "5. Installing Kubernetes | Master And Node"
-    echo "6. Execute Start Up Docker And Kubernetes | Master And Node"
-    echo "7. Configure cg_group | Master And Node"
-    echo "8. Get Kubeadmin Token | Master"
-    echo "9. Create Kube Configuration | Master"
-    echo "10. Create Flanel Network | Master"
-    echo "11. Checking Node | Master"
-    echo "12. Add Node | Node (Deployment)"
+    echo "3. Enable br_net_filter | Master And Node"
+    echo "4. Disable Swap | Master And Node"
+    echo "5. Installing Docker CE | Master And Node"
+    echo "6. Installing Kubernetes | Master And Node"
+    echo "7. Execute Start Up Docker And Kubernetes | Master And Node"
+    echo "8. Configure cg_group | Master And Node"
+    echo "9. Get Kubeadmin Token | Master"
+    echo "10. Create Kube Configuration | Master"
+    echo "11. Create Flanel Network | Master"
+    echo "12. Checking Node | Master"
+    echo "13. Add Node | Node (Deployment)"
     echo "0. Exit"
     read -p "Choose One Function : " choose
 
@@ -150,42 +156,47 @@ while true; do
     elif (( $choose == 2 ));
         then
         disable_selinux
-    elif (( $choose == 3 ));
+        report="Disabled selinux"
+     elif (( $choose == 3 ));
+        then
+        enable_net_filter
+        report="Net filter enable"
+    elif (( $choose == 4 ));
         then
         disable_swap
         report="Disabled Swap Success"
-    elif (( $choose == 4 ));
+    elif (( $choose == 5 ));
         then
         install_docker
         report="Install Docker Success"
-    elif (( $choose == 5 ));
+    elif (( $choose == 6 ));
         then
         install_kubernetes
         report="Install Kubernetes Success"
-    elif (( $choose == 6 ));
+    elif (( $choose == 7 ));
         then
         exec_startup
         report="Docker And Kubernetes Set To Startup Mode"
-    elif (( $choose == 7 ));
+    elif (( $choose == 8 ));
         then
         cg_group
         report="Cg Group Success Change"
-    elif (( $choose == 8 ));
+    elif (( $choose == 9 ));
         then
         kube_exec
         report="Kubeadmin Token Success Build"
-    elif (( $choose == 9 ));
+    elif (( $choose == 10 ));
         then
         create_kube_config
         report="Kube Configuration Created"
-    elif (( $choose == 10 ));
+    elif (( $choose == 11 ));
         then
         create_flannel_net
         report="Flannel Net Created"
-    elif (( $choose == 11 ));
+    elif (( $choose == 12 ));
         then
         check_node
-    elif (( $choose == 12 ));
+    elif (( $choose == 13 ));
         then
         report="This Function Deployment Mode"
     elif (( $choose == 0 ));
