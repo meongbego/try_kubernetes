@@ -25,8 +25,8 @@ function configure_host(){
     do
         read -p "IP Address Master $counter :" ip_address_master
         read -p "Hostname Master $counter :" hostname_master
-        # echo "$ip_address_master    $hostname_master" >> /etc/hosts
-        echo "$ip_address_master    $hostname_master" >> test
+        echo "$ip_address_master    $hostname_master" >> /etc/hosts
+        # echo "$ip_address_master    $hostname_master" >> test
         ((counter++))
     done
 
@@ -35,8 +35,8 @@ function configure_host(){
     do
         read -p "IP Address Node $counter :" ip_address_node
         read -p "Hostname Node $counter :" hostname_node
-        echo "$ip_address_node    $hostname_node" >> test
-        # echo "$ip_address_node    $hostname_node" >> /etc/hosts
+        # echo "$ip_address_node    $hostname_node" >> test
+        echo "$ip_address_node    $hostname_node" >> /etc/hosts
         ((counter++))
     done
 }
